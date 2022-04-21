@@ -1,30 +1,44 @@
 const DOMStuff = (function() {
     const body = document.querySelector('body');
+    
+    let listCount = 0;
 
-    const addList = (listName) => {
+    const addList = () => {
         const div_sidebar = document.querySelector('.sidebar');
 
         const div_list = document.createElement('div');
-        div_list.classList.add(listName)
+        // div_list.classList.add(listName)
 
-        const input = document.createElement('input');
-        input.name = "listName";
-        input.type = "radio";
-        input.id = listName;
-        input.checked = "checked";
+        const input_radio = document.createElement('input');
+        input_radio.name = "listName";
+        input_radio.type = "radio";
+        input_radio.id = listCount;
+        input_radio.checked = "checked";
 
         const label = document.createElement('label');
-        label.htmlFor = listName;
-        label.innerText = listName;
+        label.htmlFor = listCount;
+
+        const input_text = document.createElement('input');
+        input_text.type = "text";
+        input_text.placeholder = "Untitled";
+        input_text.maxLength = 15;
+        input_text.id = listCount;
 
 
-        div_list.appendChild(input);
+        label.appendChild(input_text);
+        div_list.appendChild(input_radio);
         div_list.appendChild(label);
         div_sidebar.appendChild(div_list);
+        input_text.focus(); 
+        input_text.select();
+
+        listCount++;
+
     }
 
-    
-
+    const updateListName = (e, listName) => {
+        e.classList
+    }
 
     return {addList};
 })();
@@ -32,13 +46,12 @@ const DOMStuff = (function() {
 
 const EventListeners = (function() {
     document.querySelector('.sidebar .add-button').addEventListener('click', () => {
-        alert('clicked');
+        DOMStuff.addList();
     })
 })();
 
-DOMStuff.addList("list2");
-DOMStuff.addList("list3");
-DOMStuff.addList("list4");
-DOMStuff.addList("list5");
 
+// document.querySelector('input#test').addEventListener('keyup', (e) => {
+//     console.log(e.target.value);
+// })
 
