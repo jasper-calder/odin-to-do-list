@@ -61,6 +61,10 @@ label {
     background-color: blue;
     height: 50px;
     width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    color: white;
 }
 
 label input {
@@ -69,8 +73,10 @@ label input {
     border: none;
     outline: none;
     width: 100px;
-    margin: 10px;
 }
+
+
+
 
 
 .content {

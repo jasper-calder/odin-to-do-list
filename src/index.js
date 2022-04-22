@@ -1,13 +1,12 @@
 const DOMStuff = (function() {
     const body = document.querySelector('body');
     
-    let listCount = 0;
+    let listCount = 1;
 
     const addList = () => {
         const div_sidebar = document.querySelector('.sidebar');
 
         const div_list = document.createElement('div');
-        // div_list.classList.add(listName)
 
         const input_radio = document.createElement('input');
         input_radio.name = "listName";
@@ -24,8 +23,23 @@ const DOMStuff = (function() {
         input_text.maxLength = 15;
         input_text.id = listCount;
 
+        const i_delete = document.createElement('i');
+        i_delete.classList.add('material-icons');
+        i_delete.innerText = 'delete';
+        i_delete.setAttribute('id', `delete-${listCount}`);
+        i_delete.addEventListener('click', function(e) {
+            e.target.parentNode.parentNode.remove();
+            // console.log(document.querySelector('.sidebar > * > input'));
+            console.log(e.target.parentNode.parentNode.querySelector('input').checked)
+            if (e.target.parentNode.parentNode.querySelector('input').checked) {
+                document.querySelector('.sidebar > div > input').checked = true;
+            }
+            
+        });
+
 
         label.appendChild(input_text);
+        label.appendChild(i_delete);
         div_list.appendChild(input_radio);
         div_list.appendChild(label);
         div_sidebar.appendChild(div_list);
@@ -34,10 +48,6 @@ const DOMStuff = (function() {
 
         listCount++;
 
-    }
-
-    const updateListName = (e, listName) => {
-        e.classList
     }
 
     return {addList};
