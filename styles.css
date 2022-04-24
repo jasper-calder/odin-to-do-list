@@ -13,11 +13,24 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
-header {
+body > header {
     grid-area: header;
-    height: 100%;
     background-color: brown;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 1px 5px black;
+    /* border: 2px solid black; */
+    /* z-index: 1; */
 }
+
+
+
+
+
+
+
+/* Sidebar Start */
 
 .sidebar {
     grid-area: sidebar;
@@ -75,6 +88,37 @@ label input {
     width: 100px;
 }
 
+.confirm-delete {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: fixed;
+    background-color: yellow;
+    height: 10%;
+    width: 20%;
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    gap: 10%;
+    /* z-index: 2; */
+}
+
+.soft-background {
+    background-color: rgb(189, 189, 189, 0.6);
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    /* bottom: 0;
+    left: 0; */
+    /* transform: translate(-50%, -50%); */
+    /* z-index: 1; */
+}
+
+/* Sidebar End */
+
+
 
 
 
@@ -84,9 +128,124 @@ label input {
     background-color: blue;
 }
 
+.content header {
+    text-align: center;
+    margin-top: 10px;
+}
+
+
+.list {
+    display: flex;
+    flex-direction: column;
+}
+
+.list .add-item{
+    font-size: 48px;
+    text-align: right;
+}
+
+
+.list-item {
+    background-color: orange;
+    margin: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.list-left {
+    display: flex;
+    align-items: center;
+}
+
+.list-item input {
+    display: none;
+}
+
+.list-item label {
+    background-color: red;
+    width: 10px;
+    height: 30px;
+    border-radius: 70px;
+    margin: 20px;
+}
+
+.list-item input:checked + label {
+    background-color: greenyellow;
+}
+
+.item-desc {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    gap: 5px;
+}
+
+.delete-item {
+    background-color: red;
+    width: 100px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.due-date {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    gap: 3px;
+}
+
+.due-date i {
+    font-size: 14px;
+}
+
+
+.new-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    /* height: 300px; */
+    width: 300px;
+    padding: 10px;
+    background-color: pink;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.new-item * {
+    width: 100%;
+}
+
+.new-item label.importance {
+    /* background-color: green; */
+    width: 100%;
+}
+
+.new-item input[type="radio"]:checked + label {
+    transform: scale(0.9);
+}
+
+.new-item div.importance {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
 footer {
     grid-area: footer;
     background-color: red;
+}
+
+.hidden {
+    display: none !important;
 }
 
 
