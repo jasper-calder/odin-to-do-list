@@ -18,10 +18,7 @@
         <div class="add-button">
             <span class="material-icons md-24">add_circle_outline</span>
         </div>
-        <div>
-            <input name="listName" type="radio" id="0" checked>
-            <label for="0"><input type="text" placeholder="Untitled" maxlength="15" id="0" value="To-Do List"></label>
-        </div>
+
     </div>
     <div class="content">
 
@@ -29,11 +26,7 @@
             <header>To-Do List</header>
             <i class="material-icons add-item">add_circle_outline</i>
             <div class="list-content">
-
-
-
-                <div data-item="0" class="list-item">
-
+                <!-- <div data-item="0" class="list-item">
                     <div class="list-left">
                         <input type="checkbox" id="check-item">
                         <label for="check-item"></label>
@@ -44,19 +37,16 @@
                             </p>
                         </div>
                     </div>
-                    <div class="delete-item">Delete</div>
+                    <div class="delete-item">Delete</div> -->
                     
                 </div>
-
-
-
             </div>
         </div>
 
 
     </div>
     <footer>Created by Jasper Calder</footer>
-    <div class="soft-background hidden"></div>
+    <div class="soft-background hidden" id="delete-background"></div>
     <div class="confirm-delete hidden">
         <h1>Delete this list?</h1>
         <div class="delete-choices">
@@ -65,19 +55,21 @@
         </div>
     </div>
 
-    <form class="new-item">
+    <div class="soft-background hidden" id="new-item-background"></div>
+
+    <form class="new-item hidden">
         <input type="text" name="task" id="task" placeholder="Task" required>
         <input type="date" name="due-date" id="due-date" required>
         <h1>Importance</h1>
         <div class="importance">
-            <input type="radio" name="importance" id="low" value="1" required>
+            <input type="radio" name="importance" id="low" value="1" checked>
             <label class="importance" style="background-color:yellow" for="low"></label>
             <input type="radio" name="importance" id="med" value="2">
             <label class="importance" style="background-color:orange" for="med"></label>
             <input type="radio" name="importance" id="high" value="3">
             <label class="importance" style="background-color:red" for="high"></label>
         </div>
-        <button type="submit">Create</button>
+        <button id="create-item" type="submit">Create</button>
     </form>
 
 </body>
