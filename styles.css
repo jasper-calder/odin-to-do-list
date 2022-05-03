@@ -15,13 +15,11 @@ body {
 
 body > header {
     grid-area: header;
-    background-color: brown;
+    background-color: rgb(255, 255, 255);
     display: flex;
     justify-content: center;
     align-items: center;
     box-shadow: 0px 1px 5px black;
-    /* border: 2px solid black; */
-    /* z-index: 1; */
 }
 
 
@@ -36,9 +34,8 @@ body > header {
     grid-area: sidebar;
     display: flex;
     flex-direction: column;
-    background-color: rgb(241, 234, 234);
+    background-color: rgb(231, 231, 230);
     padding: 32px;
-    /* font-size: 30px; */
     gap: 16px;
     overflow: scroll;
 }
@@ -52,7 +49,7 @@ body > header {
     text-align: right;
 }
 
-.sidebar .add-button:hover {
+.sidebar .add-button span:hover {
     cursor: pointer;
 }
 
@@ -64,14 +61,14 @@ input[type="radio"]{
 }
 
 input[type="radio"]:checked + label{
-    background-color: red;
+    background-color: rgb(165, 82, 82);
     transform: scale(0.98);
 }
  
 label {
     display: flex;
     transition: background-color 0.25s, transform 0.25s;
-    background-color: blue;
+    background-color: rgb(107, 107, 177);
     height: 50px;
     width: 100%;
     justify-content: space-between;
@@ -102,7 +99,6 @@ label input {
     left: 50%;
     transform: translate(-50%, 50%);
     gap: 10%;
-    /* z-index: 2; */
 }
 
 .soft-background {
@@ -110,10 +106,6 @@ label input {
     height: 100vh;
     width: 100vw;
     position: fixed;
-    /* bottom: 0;
-    left: 0; */
-    /* transform: translate(-50%, -50%); */
-    /* z-index: 1; */
 }
 
 /* Sidebar End */
@@ -125,7 +117,7 @@ label input {
 
 .content {
     grid-area: content;
-    background-color: blue;
+    background-color: rgb(239, 239, 240);
 }
 
 .content header {
@@ -139,7 +131,11 @@ label input {
     flex-direction: column;
 }
 
-.list .add-item{
+.list .add-item {
+    text-align: right;
+}
+
+.list i{
     font-size: 48px;
     text-align: right;
 }
@@ -183,12 +179,13 @@ label input {
 }
 
 .delete-item {
-    background-color: red;
+    background-color: rgb(255, 255, 255);
     width: 100px;
     height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 10px;
 }
 
 .due-date {
@@ -208,28 +205,32 @@ label input {
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    /* height: 300px; */
     width: 300px;
-    padding: 10px;
-    background-color: pink;
+    padding: 20px;
+    background-color: rgb(240, 186, 143);
     position: fixed;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px rgb(141, 141, 141);
 }
 
 .new-item * {
     width: 100%;
 }
 
-.new-item label.importance {
-    /* background-color: green; */
-    width: 100%;
+.new-item button {
+    border-radius: 10px;
+    border: none;
+    height: 40px;
 }
+
 
 .new-item input[type="radio"]:checked + label {
     transform: scale(0.9);
+    box-shadow: 0px 0px 10px rgb(141, 141, 141);
 }
 
 .new-item div.importance {
@@ -240,7 +241,12 @@ label input {
 
 footer {
     grid-area: footer;
-    background-color: red;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
 }
 
 .hidden {

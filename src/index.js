@@ -35,34 +35,18 @@ const DOMStuff = (function() {
 
         const div_list = document.createElement('div');
         div_list.setAttribute('class', 'to-do-list');
-        const test = `
+        const listBar = `
             <input name="listName" type="radio" id="${list.listID}">
             <label for="${list.listID}">
                 <input type="text" value="${list.name}" placeholder="Untitled" maxlength="15" id="${list.listID}">
                 <i class="material-icons" id="delete-${list.listID}">delete</i>
             </label>`;
-        div_list.innerHTML = test;
+        div_list.innerHTML = listBar;
 
 
         
-        const div_listPage = document.createElement('div');
-        div_listPage.classList.add('list');
-        div_listPage.classList.add('hidden');
-        div_listPage.setAttribute('data-list', `${list.listID}`);
 
-        const header_listTitle = document.createElement('header');
-        header_listTitle.innerText = 'To-Do List';
-        const i_addCircle = document.createElement('i');
-        i_addCircle.classList.add('material-icons');
-        i_addCircle.classList.add('add');
-        i_addCircle.innerText = 'add_circle_outline';
-        const div_listPageContent = document.createElement('div');
-        div_listPageContent.classList.add('list-content');
 
-        div_content.appendChild(div_listPage);
-        div_listPage.appendChild(header_listTitle);
-        div_listPage.appendChild(i_addCircle);
-        div_listPage.appendChild(div_listPageContent);
 
 
 
@@ -101,7 +85,8 @@ const DOMStuff = (function() {
 
         const input_text = document.querySelectorAll('.sidebar input[type="text"]')[document.querySelectorAll('.sidebar input[type="text"]').length-1];
         input_text.addEventListener('keyup', () => {
-            StateData.activeToDoList.name = input_text.value
+            StateData.activeToDoList.name = input_text.value;
+            displayActiveList();    
         })
 
         document.querySelector('.sidebar input').checked = true;
@@ -124,25 +109,28 @@ const DOMStuff = (function() {
                 </div>
             </div>
             <div class="delete-item">Delete</div>`;
-
-
         switch (item.importance) {
-            case 1:
-                div_listItem.style.backgroundColor = 'yellow';
-            case 2:
-                div_listItem.style.backgroundColor = 'orange';
-            case 3:
-                div_listItem.style.backgroundColor = 'red';
+            case "1":
+                div_listItem.style.backgroundColor = 'rgb(255, 255, 137)';
+                break;
+            case "2":
+                div_listItem.style.backgroundColor = 'rgb(255, 205, 113)';
+                break;
+            case "3":
+                div_listItem.style.backgroundColor = 'rgb(252, 92, 92)';
+                break;
         }
 
         document.querySelector('.list-content').appendChild(div_listItem);
         div_listItem.addEventListener('click', (e) => {
+
             let result = StateData.activeToDoList.listItems.find(obj => obj.itemID == e.target.id);
             DOMStuff.ToggleAddNewItem();
             const div_newItem = document.querySelector('.new-item');
             div_newItem.querySelector(`input[value="${result.importance}"]`).checked = true;
             div_newItem.querySelector('#task').value = result.task;
             div_newItem.querySelector('#due-date').value = result["due-date"];
+
 
         }, {capture:false})
 
@@ -162,6 +150,7 @@ const DOMStuff = (function() {
         for (list of StateData.ToDoLists) {
             DOMStuff.addList(list);
         }
+
     }
 
     const displayActiveList = () => {
@@ -169,18 +158,28 @@ const DOMStuff = (function() {
         for (item of StateData.activeToDoList.listItems) {
             DOMStuff.displayItem(item);
         }
+        document.querySelector('.list > header').innerText = StateData.activeToDoList.name;
+
+
+    }
+
+    const displayPage = () => {
+        console.log(StateData.ToDoLists);
+        DOMStuff.displayLists();
+        DOMStuff.displayActiveList();
+        console.log(StateData.ToDoLists);
     }
 
 
 
 
-    return {addList, displayItem, deleteList, ToggleConfirmDelete, ToggleAddNewItem, displayActiveList, displayLists};
+    return {addList, displayItem, deleteList, ToggleConfirmDelete, ToggleAddNewItem, displayActiveList, displayLists, displayPage};
 })();
 
 
 const EventListeners = (function() {
 
-    document.querySelector('.sidebar .add-button').addEventListener('click', ()  => {
+    document.querySelector('.add-button span').addEventListener('click', ()  => {
         StateData.addToDoList();
         DOMStuff.displayLists();
     });
@@ -198,7 +197,9 @@ const EventListeners = (function() {
     document.querySelector('#new-item-background').addEventListener('click', () => {
         DOMStuff.ToggleAddNewItem();
     })
-    document.querySelector('.add-item').addEventListener('click', () => {
+
+
+    document.querySelector('.add-item i').addEventListener('click', () => {
         DOMStuff.ToggleAddNewItem();
  
     });
@@ -210,11 +211,11 @@ const EventListeners = (function() {
         formData['itemID'] = StateData.activeToDoList.ItemCount;
         StateData.activeToDoList.ItemCount++;
         StateData.activeToDoList.addListItem(formData);
-        console.log(StateData.activeToDoList);
 
         DOMStuff.ToggleAddNewItem();
         DOMStuff.displayActiveList();
-        document.querySelector('.new-item').reset();
+
+        document.querySelector('form').reset();
 
 
     })
@@ -230,7 +231,11 @@ const StateData = (function() {
 
     let listCount = 0;
 
-    const addToDoList = () => ToDoLists.push(ToDoList());
+    const addToDoList = () => {
+        ToDoLists.push(ToDoList())
+        console.log('test');
+        saveStateData();
+    };
 
     const ToDoList = () => {
         let ItemCount = 0;
@@ -240,12 +245,18 @@ const StateData = (function() {
         addListItem = (listItem) => {
             listItems.push(listItem);
             ItemCount++;
+            saveStateData();
             return ItemCount;
         };
         getListItems = () => {return listItems};
         listCount++;
         return {name, listID, listItems, addListItem, getListItems, ItemCount};
     }
+
+
+
+
+
 
     const defaultList = ToDoList();
     let activeToDoList = defaultList;
@@ -256,14 +267,26 @@ const StateData = (function() {
     let activeItem = 0;
     let activeItemIndex = 0;
 
+    const saveStateData = () => {
+        window.localStorage.setItem("ToDoLists", JSON.stringify(ToDoLists));
+    }
 
-    return {ToDoList, addToDoList, ToDoLists, activeToDoList, activeToDoListID, activeToDoListIndex, listCount};
+    const retrieveStateData = () => {
+        StateData.ToDoLists = JSON.parse(window.localStorage.getItem("ToDoLists"));
+        console.log(ToDoLists);
+    }
+
+    const clearStateData = () => {
+        window.localStorage.clear();
+    }
+
+
+    return {ToDoList, addToDoList, saveStateData, retrieveStateData, clearStateData, ToDoLists, activeToDoList, activeToDoListID, activeToDoListIndex, listCount};
 })();
 
 
-
-// Add default to do list
-DOMStuff.displayLists();
+StateData.retrieveStateData();
+DOMStuff.displayPage();
 
 
 
