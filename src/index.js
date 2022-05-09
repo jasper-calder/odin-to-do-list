@@ -1,5 +1,7 @@
 
 
+
+// Handles all the creation, modification, and display of all DOM elements
 const DOMStuff = (function() {
     const body = document.querySelector('body');
     const div_content = document.querySelector('.content');
@@ -177,6 +179,8 @@ const DOMStuff = (function() {
 })();
 
 
+
+// Handles almost all even listener functions (certain listeners are declared with the DOM elements in DOM Stuff)
 const EventListeners = (function() {
 
     document.querySelector('.add-button span').addEventListener('click', ()  => {
@@ -225,7 +229,7 @@ const EventListeners = (function() {
 })();
 
 
-
+// Handles changes to the list and to-do data items
 const StateData = (function() {
 
 
@@ -285,7 +289,6 @@ const StateData = (function() {
 })();
 
 
-StateData.retrieveStateData();
 DOMStuff.displayPage();
 
 
