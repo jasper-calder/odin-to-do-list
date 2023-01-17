@@ -8,17 +8,14 @@
 
 <img width="1512" alt="Screenshot 2023-01-16 at 9 53 09 PM" src="https://user-images.githubusercontent.com/81532989/212799826-1af1b622-a05d-4b54-ac13-cfa1b5809907.png">
 
-
+Create multiple list to store a variety of tasks.
 
 <img width="1508" alt="Screenshot 2023-01-16 at 9 54 37 PM" src="https://user-images.githubusercontent.com/81532989/212799828-61d66e16-d2b2-46d4-a5ed-247cef092487.png">
 
 
-
 <img width="1511" alt="Screenshot 2023-01-16 at 9 56 14 PM" src="https://user-images.githubusercontent.com/81532989/212799829-e898af84-e6cd-47a3-8c3d-1dabf55b72a9.png">
 
-
-
-
+Create tasks with due dates, priority colouring, and completion statuses.
 
 ### Technologies:
 * Javascript
