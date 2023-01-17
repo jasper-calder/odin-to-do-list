@@ -5,13 +5,6 @@
 * Used the MVC archictecture to update and save the current state within the browsers’s Web Storage API
 * Frequently committed code with Git versioning sofware to increase development speed and organization
 
-<img width="867" alt="Screenshot 2023-01-13 at 6 18 43 PM" src="https://user-images.githubusercontent.com/81532989/212799823-bc0ff1dc-d9b8-4bd9-b1fa-45f082230ac8.png">
-
-
-
-<img width="1512" alt="Screenshot 2023-01-16 at 9 52 45 PM" src="https://user-images.githubusercontent.com/81532989/212799824-48076157-d8c0-4e06-98d3-c23cd6587f52.png">
-
-
 
 <img width="1512" alt="Screenshot 2023-01-16 at 9 53 09 PM" src="https://user-images.githubusercontent.com/81532989/212799826-1af1b622-a05d-4b54-ac13-cfa1b5809907.png">
 
